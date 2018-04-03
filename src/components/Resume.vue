@@ -3,7 +3,7 @@
     <div class="title flex-center">
       <span>RESUME</span>
       <a href="./Cynthia_resume.pdf" download>
-        <div class="download-btn flex-center">DOWNLOAD</div>
+        <div class="download-btn flex-center">{{$t("Resume.download", $store.state.language)}}</div>
       </a>
     </div>
     <div class="content">

@@ -1,0 +1,21 @@
+{
+  "Landing": {
+    "about": "關於",
+    "skill": "技能",
+    "project": "專案",
+    "resume": "履歷",
+    "contact": "與我聯絡"
+  },
+  "Contact": {
+    "title": "與我聯絡",
+    "placeholder": {
+      "name": "姓名",
+      "email": "Email",
+      "message": "請輸入訊息"
+    },
+    "send": "送出"
+  },
+  "Resume": {
+    "download": "下載"
+  }
+}

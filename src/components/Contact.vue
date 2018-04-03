@@ -1,11 +1,11 @@
 <template>
   <div class="contact-block">
     <div class="content">
-      <div class="title">CONTACT ME</div>
-      <input class="input-area" type="text" name="" value="" placeholder="Name" v-model="name">
-      <input class="input-area" type="email" name="" value="" placeholder="Email" v-model.trim="email">
-      <textarea class="input-area" name="name" rows="10" cols="80" placeholder="Message" v-model="message"></textarea>
-      <button type="button" class="send-btn" @click="submit">Send</button>
+      <div class="title">{{$t("Contact.title", $store.state.language)}}</div>
+      <input class="input-area" type="text" name="" value="" :placeholder="$t('Contact.placeholder.name', $store.state.language)" v-model="name"/>
+      <input class="input-area" type="email" name="" value="" :placeholder="$t('Contact.placeholder.email', $store.state.language)" v-model.trim="email">
+      <textarea class="input-area" name="name" rows="10" cols="80" :placeholder="$t('Contact.placeholder.message', $store.state.language)" v-model="message"></textarea>
+      <button type="button" class="send-btn" @click="submit">{{$t("Contact.send", $store.state.language)}}</button>
     </div>
   </div>
 </template>
@@ -20,12 +20,13 @@ export default {
     }
   },
   methods: {
-    submit() {
-      console.log(this.name, this.email, this.message)
+    submit () {
+
     },
-    validEmail(email) {
-      var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
+    validEmail () {
+      let email = this.email
+      let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(email);
     }
   }
 }
