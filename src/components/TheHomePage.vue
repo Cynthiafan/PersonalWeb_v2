@@ -1,43 +1,38 @@
 <template>
   <div>
-    <div class="nav-bar">
-      <a class="link" v-scroll-to="'#about'" :class="[currentPage === 1 ? current-page : '']">{{$t("Landing.about", $store.state.language)}}</a>
-      <span>|</span>
-      <a class="link" href="#about">{{$t("Landing.skill", $store.state.language)}}</a>
-      <span>|</span>
-      <a class="link"v-scroll-to="'#projects'">{{$t("Landing.project", $store.state.language)}}</a>
-      <span>|</span>
-      <a class="link" v-scroll-to="'#resume'">{{$t("Landing.resume", $store.state.language)}}</a>
-      <span>|</span>
-      <a class="link" v-scroll-to="'#contact'">{{$t("Landing.contact", $store.state.language)}}</a>
-      <span>|</span>
-      <div @click="changeLanguage(setLanguage)">{{languageBtn}}</div>
-    </div>
-    <div class="">
-      <landing ref="landing"/>
-      <about-me id="about" ref="about"/>
-      <resume id="resume" ref="resume"/>
-      <projects id="projects" ref="projects"/>
-      <contact id="contact" ref="contact"></contact>
-    </div>
+    <navbar id="landing" ref="landing"/>
+    <landing id="landing" ref="landing"/>
+    <about-me id="about" ref="about"/>
+    <skill id="skill" ref="skill"/>
+    <!-- <projects id="projects" ref="projects"/> -->
+    <project id="projects" ref="projects"/>
+    <resume id="resume" ref="resume"/>
+    <contact id="contact" ref="contact"/>
   </div>
 </template>
 
 <script>
+import Navbar from './Navbar.vue'
 import Landing from './Landing.vue'
 import AboutMe from './AboutMe.vue'
 import Resume from './Resume.vue'
 import Contact from './Contact.vue'
-import Projects from './Projects.vue'
+// import Projects from './Projects.vue'
+import Skill from './Skill.vue'
+import Project from './Project.vue'
+
 import { mapMutations, mapGetters } from 'vuex'
 
 export default {
   components: {
+    Navbar,
     Landing,
     AboutMe,
     Resume,
     Contact,
-    Projects
+    // Projects,
+    Skill,
+    Project
   },
   data () {
     return {
@@ -68,9 +63,7 @@ export default {
         }
       }
       const pages = ['landing', 'about', 'resume', 'contact']
-      // if (currentTop >= pagePosition.landing.top && currentTop < pagePosition.landing.bottom) {
-      //   console.log('landing')
-      // }
+
       for (let i in pages) {
         if (currentTop >= pagePosition[pages[i]].top && currentTop < pagePosition[pages[i]].bottom) {
           this.currentPage = i
@@ -102,39 +95,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.nav-bar {
-  position: fixed;
-  width: 100%;
-  height: 50px;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  padding: 0px 10px;
-  background: rgba(black, .8);
-  z-index: 100;
-  a, div {
-    color: rgba($cream-white, .7);
-    text-decoration: none;
-    // font-weight: bold;
-    margin: 0px 1%;
-    letter-spacing: 2px;
-    font-size: 12px;
-
-    &:hover {
-      color: $maize-yellow;
-      // font-weight: bold;
-      cursor: pointer;
-      // transition: .6s;
-    }
-  }
-  span {
-    color: rgba($cream-white, .4);
-  }
-}
-.link {
-  color: white;
-  text-decoration: none;
-}
 .current-page {
   color: $maize-yellow;
 }

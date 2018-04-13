@@ -1,86 +1,89 @@
 <template>
   <div class="resume-block flex-center">
     <div class="title flex-center">
-      <span>RESUME</span>
-      <a href="./Cynthia_resume.pdf" download>
-        <div class="download-btn flex-center">{{$t("Resume.download", $store.state.language)}}</div>
+      <span data-aos="fade-up"
+            data-aos-duration="1000"
+            >RESUME</span>
+      <a :href="resume.pdf" download>
+        <div class="btn flex-center">{{$t("Resume.download", $store.state.language)}}</div>
       </a>
     </div>
     <div class="content">
       <div class="resume flex-center">
+        <img class="resume-img" :src="resume.photo" alt="resume">
         <div class="filter" @click="isZoomIn = !isZoomIn"></div>
-        <img class="circle" src="../assets/images/zoom-in3.png" alt="zoom-in">
+        <img class="circle" src="../assets/images/zoom_in.png" alt="zoom-in" @click="isZoomIn = !isZoomIn">
       </div>
     </div>
-    <div v-if="isZoomIn" class="zoom-in-block flex-center">
-      <img src="../assets/images/Cynthia_resume(ch).png" alt="resume">
+    <div v-if="isZoomIn" class="zoom-in-block flex-center" @click="zoomOut">
+      <img :src="resume.photo" alt="resume">
       <div class="close-btn" @click="isZoomIn = !isZoomIn">&times;</div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+import resumeEn from '../assets/images/Cynthia_resume(en).png'
+import resumeCh from '../assets/images/Cynthia_resume(ch).png'
+
 export default {
   data() {
     return {
       isZoomIn: false,
+    }
+  },
+  methods: {
+    zoomOut () {
+      this.isZoomIn = false
+    }
+  },
+  computed: {
+    ...mapGetters(['language']),
+    resume () {
+      const version = {
+        'en': {
+          'photo': resumeEn,
+          'pdf': '/static/Cynthia_resume.pdf'
+        },
+        'zh': {
+          'photo': resumeCh,
+          'pdf': '/static/Cynthia_resume2.pdf'
+        }
+      }
+      return version[this.language]
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-  * {
-    font-family: 'Roboto';
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.title {
+  flex-direction: column;
+  width: 50%;
+
+  span {
+    color: $maize-yellow;
+    font-size: 100px;
+    left: 5%;
+    letter-spacing: 3px;
+    font-weight: bolder;
+    z-index: 2;
+    user-select: none;
+    cursor: default;
   }
-
-  .flex-center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .title {
-    flex-direction: column;
-    width: 50%;
-
-    span {
-      color: $maize-yellow;
-      font-size: 100px;
-      left: 5%;
-      letter-spacing: 3px;
-      font-weight: bolder;
-      z-index: 2;
-      user-select: none;
-      cursor: default;
-    }
-
-    a {
-      text-decoration: none;
-    }
-    .download-btn {
-      text-decoration: none;
-      width: 150px;
-      height: 40px;
-      border-radius: 20px;
-      border: 2px solid $maize-yellow;
-      font-weight: bold;
-      color: $maize-yellow;
-      font-size: 16px;
-
-      &:hover {
-        background-color: $maize-yellow;
-        border: none;
-        color: white;
-        transition: .4s ease;
-      }
-    }
-  }
-
+}
   .resume-block {
     position: relative;
     width: 100%;
-    height: 100vh;
-    background-image: url('../assets/images/resume_bg.jpg');
+    height: 700px;
+    background-image: url('../assets/images/bg_resume.jpg');
     background-size: cover;
   }
   .content {
@@ -92,11 +95,10 @@ export default {
   }
   .resume {
     position: relative;
-    width: calc(595px * 0.5);
-    height: calc(842px * 0.5);
-    background-image: url('../assets/images/Cynthia_resume(ch).png');
-    background-size: cover;
     box-shadow: 8px 8px 10px black;
+    .resume-img {
+      width: 300px;
+    }
 
     .filter {
       position: absolute;
@@ -127,9 +129,8 @@ export default {
     }
   }
   .zoom-in-block {
-    position: relative;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     background: rgba(black, .7);
     position: absolute;
     z-index: 5;

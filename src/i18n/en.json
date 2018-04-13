@@ -1,10 +1,23 @@
 {
   "Landing": {
+    "home": "HOME",
     "about": "ABOUT",
     "skill": "SKILL",
     "project": "PROJECT",
     "resume": "RESUME",
     "contact": "CONTACT"
+  },
+  "Skill": {
+    "title": "SKILLS",
+    "front-end": "Front-end",
+    "back-end": "Back-end",
+    "others": "Others"
+  },
+  "Project": {
+    "title": "PROJECTS",
+    "csd": "Agri-business Platform",
+    "web": "Personal Website",
+    "smpa": "Retail Sales System"
   },
   "Contact": {
     "title": "CONTACT ME",
@@ -16,6 +29,17 @@
     "send": "Send"
   },
   "Resume": {
-    "download": "DOWNLOAD"
+    "download": "Download"
+  },
+  "About": {
+    "title": "Cynthia Fan",
+    "career": "Front-end Developer",
+    "location": "Taipei, Taiwan",
+    "email": "cynthiafan1230@gmail.com",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderitLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "btn": {
+      "resume": "My Resume",
+      "contact": "Contact Me"
+    }
   }
 }

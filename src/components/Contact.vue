@@ -1,16 +1,18 @@
 <template>
-  <div class="contact-block">
+  <section class="contact-block">
     <div class="content">
       <div class="title">{{$t("Contact.title", $store.state.language)}}</div>
-      <input class="input-area" type="text" name="" value="" :placeholder="$t('Contact.placeholder.name', $store.state.language)" v-model="name"/>
-      <input class="input-area" type="email" name="" value="" :placeholder="$t('Contact.placeholder.email', $store.state.language)" v-model.trim="email">
-      <textarea class="input-area" name="name" rows="10" cols="80" :placeholder="$t('Contact.placeholder.message', $store.state.language)" v-model="message"></textarea>
-      <button type="button" class="send-btn" @click="submit">{{$t("Contact.send", $store.state.language)}}</button>
+      <input class="input-area" type="text" name="" value="" required :placeholder="$t('Contact.placeholder.name', $store.state.language)" v-model="name"/>
+      <input class="input-area" type="email" name="" value="" required :placeholder="$t('Contact.placeholder.email', $store.state.language)" v-model.trim="email">
+      <textarea class="input-area" name="name" rows="10" cols="80" required :placeholder="$t('Contact.placeholder.message', $store.state.language)" v-model="message"></textarea>
+      <button type="button" class="btn" @click="submit">{{$t("Contact.send", $store.state.language)}}</button>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
+import Parallax from 'vue-parallaxy'
+
 export default {
   data() {
     return {
@@ -18,6 +20,9 @@ export default {
       email: '',
       message: ''
     }
+  },
+  components: {
+   Parallax
   },
   methods: {
     submit () {
@@ -33,65 +38,56 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  * {
-    font-family: 'Roboto';
-    font-size: 1em;
-  }
+* {
+  user-select: none;
+}
+.title {
+  font-size: 56px;
+  font-weight: 500;
+  color: white;
+  user-select: none;
+  cursor: default;
+}
+.contact-block {
+  width: 100%;
+  height: 600px;
+  background: url('../assets/images/bg_contact.jpg');
+  background-size: cover;
+}
+.content {
+  width: 50%;
+  height: 100%;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 
-  .title {
-    font-size: 56px;
-    font-weight: 500;
-    color: white;
-  }
-
-  .contact-block {
-    width: 100%;
-    height: 100vh;
-    background: url('../assets/images/contact_bg.jpg');
-    background-size: cover;
-  }
-  .content {
-    width: 50%;
-    height: 100%;
-    padding: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-
-    .input-area {
-      width: 350px;
-      padding: 8px;
-      border-radius: 4px;
-      border: none;
-      margin-bottom: 8px;
-      resize: none;
-
-      &:focus {
-        outline: none;
-      }
+  .input-area {
+    width: 350px;
+    padding: 8px;
+    border: none;
+    margin-bottom: 8px;
+    resize: none;
+    caret-color: $maize-yellow;
+    &:valid {
+      @extend .valid;
+    }
+    &:invalid {
+      @extend .invalid;
     }
 
-    .send-btn {
-      font-size: 1.5em;
-      font-weight: 700;
-      color: $maize-yellow;
-      background: transparent;
-      width: 130px;
-      height: 38px;
-      border-radius: 20px;
-      border: 2px solid $maize-yellow;
-      cursor: pointer;
-
-      &:focus {
-        outline: none;
-      }
-      &:hover {
-        background: $maize-yellow;
-        border: none;
-        color: white;
-        transition: .4s ease;
-      }
+    &:focus {
+      outline: none;
     }
   }
+}
+.valid {
+  border-color: $grass-green;
+  box-shadow: inset 5px 0 0 $grass-green;
+}
+.invalid {
+  border-color: $maize-yellow;
+  box-shadow: inset 5px 0 0 $maize-yellow;
+}
 </style>

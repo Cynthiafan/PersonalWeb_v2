@@ -5,6 +5,9 @@ import router from './router'
 import VueI18n from 'vue-i18n'
 import VueScrollTo from 'vue-scrollto'
 import store from './store/index.js'
+import './assets/styles/reset.css'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 
 Vue.use(Vuex)
 
@@ -31,15 +34,21 @@ const i18n = new VueI18n({
     }
 })
 
-
 Vue.config.productionTip = false
 
-/* eslint-disable no-new */
+// $(window).on('load', function () {
+//     AOS.refresh();
+// });
+
+
 new Vue({
   el: '#app',
   router,
   i18n,
   store,
+  created () {
+  AOS.init()
+  },
   components: { App },
   template: '<App/>'
 })

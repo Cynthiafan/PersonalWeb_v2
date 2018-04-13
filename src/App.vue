@@ -14,16 +14,9 @@ export default {
 @import url('https://fonts.googleapis.com/css?family=Roboto:100,400,500,700,900|Raleway:300,600');
 
 body {
-  padding: 0;
-  margin: 0;
-  font-family: 'Raleway','Roboto', 'Meiryo', "微軟正黑體", "Microsoft JhengHei";
-  font-size: 1em;
+  font-family: 'Roboto', 'Raleway', 'Meiryo', "微軟正黑體", "Microsoft JhengHei";
 }
 * {
   box-sizing: border-box;
-}
-p {
-  margin: 0;
-  cursor: default;
 }
 </style>

@@ -1,0 +1,76 @@
+.btn {
+  text-decoration: none;
+  font-family: 'Roboto';
+  width: 120px;
+  height: 35px;
+  border-radius: 20px;
+  background: transparent;
+  border: 2px solid $maize-yellow;
+  font-weight: bold;
+  color: $maize-yellow;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  user-select: none;
+
+  &:hover {
+    background-color: $maize-yellow;
+    border: none;
+    color: white;
+    transition: .4s ease;
+    cursor: pointer;
+  }
+}
+.btn-sm {
+  text-decoration: none;
+  font-family: 'Roboto';
+  width: 110px;
+  height: 28px;
+  border-radius: 20px;
+  border: 2px solid $maize-yellow;
+  font-weight: normal;
+  color: $maize-yellow;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  background: transparent;
+
+  &:hover {
+    background-color: $maize-yellow;
+    border: none;
+    color: white;
+    transition: .4s ease;
+    cursor: pointer;
+  }
+}
+
+// for buttons group
+.btn-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btns {
+  border: 1px solid $light-grey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $light-grey;
+  background: transparent;
+  width: 90px;
+  height: 26px;
+
+  &:first-child {
+    border-radius: 3px 0px 0px 3px;
+    border-right: none;
+  }
+  &:last-child {
+    border-radius: 0px 3px 3px 0px;
+    border-left: none;
+  }
+}
+.btn-selected {
+  color: $maize-yellow;
+}

@@ -1,5 +1,6 @@
 import Vuex from 'vuex'
 import Vue from 'vue'
+
 Vue.use(Vuex)
 export default new Vuex.Store({
     state: {
@@ -11,6 +12,6 @@ export default new Vuex.Store({
       }
     },
     getters: {
-      language: state => state.language
+      language: state => state.language,
     }
 });

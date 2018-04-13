@@ -1,6 +1,5 @@
 <template>
-  <div class="landing-block">
-    
+  <section class="landing-section">
     <div class="landing-filter">
       <div class="text">
         <p>HELLO! I AM</p>
@@ -8,7 +7,7 @@
         <p>= FRONT-END DEVELOPER + CREATOR + ADVENTURER</p>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -23,19 +22,25 @@ export default {
 <style lang="scss" scoped>
 
 * {
+  font-family: "Raleway";
   color: white;
 }
 
-.landing-block {
+// all of the <p> in this component can not be selected
+p {
+  user-select: none;
+}
+
+.landing-section {
   width: 100%;
   height: 100vh;
-  background-image: url('../assets/images/landing_bg.jpg');
+  background-image: url('../assets/images/bg_landing.jpg');
   background-size: cover;
 
   .landing-filter {
     width: 100%;
     height: 100vh;
-    background: rgba(0, 0, 0, .65);
+    background: rgba(black, .65);
     display: flex;
     justify-content: center;
     align-items: center;

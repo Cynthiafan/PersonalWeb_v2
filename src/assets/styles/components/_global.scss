@@ -1,0 +1,30 @@
+body { font-size: 1em; }
+p { cursor: default; }
+a { text-decoration: none; }
+button {
+  user-select: none;
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+// for 'front-end developer'
+h2 {
+
+}
+
+// for titles: about, skills, projects, resume, contact
+h3 {
+  font-size: 2em;
+  font-weight: 600;
+  user-select: none;
+}
+
+h4 {
+  color: $blue-grey;
+  font-weight: 300;
+  font-size: 14px;
+}
