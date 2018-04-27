@@ -3,25 +3,25 @@
     <div class="bg-filter">
       <div class="content">
         <h3>{{$t("Skill.title", $store.state.language)}}</h3>
-        <div class="btn-group">
-          <button class="btns"
+        <div class="my-btn-group">
+          <button class="my-btns"
                   type="button"
                   name="button"
-                  :class="[currentTab === 'f2e' ? 'btn-selected' : '']"
+                  :class="[currentTab === 'f2e' ? 'my-btn-selected' : '']"
                   @click="currentTab = 'f2e'">
                   {{$t("Skill.front-end", $store.state.language)}}
           </button>
-          <button class="btns"
+          <button class="my-btns"
                   type="button"
                   name="button"
-                  :class="[currentTab === 'b2e' ? 'btn-selected' : '']"
+                  :class="[currentTab === 'b2e' ? 'my-btn-selected' : '']"
                   @click="currentTab = 'b2e'">
                   {{$t("Skill.back-end", $store.state.language)}}
           </button>
-          <button class="btns"
+          <button class="my-btns"
                   type="button"
                   name="button"
-                  :class="[currentTab === 'others' ? 'btn-selected' : '']"
+                  :class="[currentTab === 'others' ? 'my-btn-selected' : '']"
                   @click="currentTab = 'others'">
                   {{$t("Skill.others", $store.state.language)}}
           </button>
@@ -151,6 +151,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+* {
+  font-family: 'Roboto';
+}
+
 $bar-radius: 5px;
 // bar data
 $dataNum: 11;
@@ -166,6 +170,10 @@ $data: 80% 75% 58% 60% 30% 25% 70% 65% 65% 85% 60%;
     0%   {width: 0px;}
     100%  {width: nth($data,$i);}
   }
+}
+
+h3 {
+  font-size: 2em;
 }
 
 .skill-block {
@@ -189,7 +197,7 @@ $data: 80% 75% 58% 60% 30% 25% 70% 65% 65% 85% 60%;
     align-items: center;
     flex-direction: column;
 
-    .btn-group {
+    .my-btn-group {
       margin: 25px 0px 20px 0px;
     }
   }
@@ -210,9 +218,10 @@ $data: 80% 75% 58% 60% 30% 25% 70% 65% 65% 85% 60%;
     }
 
     p {
-      font-weight: 300;
+      font-weight: 400;
       font-size: 14px;
       margin-bottom: 5px;
+      color: $light-grey;
     }
   }
 
@@ -222,6 +231,9 @@ $data: 80% 75% 58% 60% 30% 25% 70% 65% 65% 85% 60%;
     height: 10px;
     border-radius: $bar-radius;
     background: $cream-white;
+    @media #{$break-sx} {
+      width: 300px;
+    }
 
     .bar {
       position: absolute;

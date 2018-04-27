@@ -2,7 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import TheHomePage from '@/components/TheHomePage'
 import TheErrorPage from '@/components/TheErrorPage'
-import about from '@/components/AboutMe'
+import Playground from '@/components/Playground/PlaygroundLayout'
+import TheAdmin from '@/components/TheAdmin'
 
 Vue.use(Router)
 
@@ -24,14 +25,19 @@ const router = new Router({
       path: '/',
       name: 'ThePage',
       meta: {title: `Hello, I'm Cynthia`},
-      component: TheHomePage,
-      children: [
-        {
-          path: 'about',
-          name: 'about',
-          component: about
-        }
-      ]
+      component: TheHomePage
+    },
+    {
+      path: '/playground',
+      name: 'playground',
+      meta: {title: 'My Playground'},
+      component: Playground
+    },
+    {
+      path: '/admin',
+      name: 'admin',
+      meta: {title: 'Admin'},
+      component: TheAdmin
     },
     {
       path: '*',

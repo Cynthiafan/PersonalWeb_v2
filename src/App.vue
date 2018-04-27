@@ -10,13 +10,9 @@ export default {
 }
 </script>
 
-<style lang="scss">
-@import url('https://fonts.googleapis.com/css?family=Roboto:100,400,500,700,900|Raleway:300,600');
-
-body {
-  font-family: 'Roboto', 'Raleway', 'Meiryo', "微軟正黑體", "Microsoft JhengHei";
-}
+<style lang="scss" src='vuetify/dist/vuetify.min.css'>
 * {
   box-sizing: border-box;
+  font-family: 'Roboto', 'Raleway', 'Meiryo', "微軟正黑體", "Microsoft JhengHei" !important;
 }
 </style>

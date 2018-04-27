@@ -1,23 +1,25 @@
 <template>
   <div class="resume-block flex-center">
-    <div class="title flex-center">
-      <span data-aos="fade-up"
+    <div class="resume-title">
+      <h3 data-aos="fade-up"
             data-aos-duration="1000"
-            >RESUME</span>
+            >RESUME</h3>
       <a :href="resume.pdf" download>
-        <div class="btn flex-center">{{$t("Resume.download", $store.state.language)}}</div>
+        <div class="my-btn flex-center">{{$t("Resume.download", $store.state.language)}}</div>
       </a>
     </div>
     <div class="content">
       <div class="resume flex-center">
-        <img class="resume-img" :src="resume.photo" alt="resume">
+        <img class="resume-img" :src="resume.photo" alt="resume" ref="image">
         <div class="filter" @click="isZoomIn = !isZoomIn"></div>
         <img class="circle" src="../assets/images/zoom_in.png" alt="zoom-in" @click="isZoomIn = !isZoomIn">
       </div>
+      <a :href="resume.pdf" download>
+        <div class="my-btn flex-center">{{$t("Resume.download", $store.state.language)}}</div>
+      </a>
     </div>
     <div v-if="isZoomIn" class="zoom-in-block flex-center" @click="zoomOut">
       <img :src="resume.photo" alt="resume">
-      <div class="close-btn" @click="isZoomIn = !isZoomIn">&times;</div>
     </div>
   </div>
 </template>
@@ -38,20 +40,34 @@ export default {
       this.isZoomIn = false
     }
   },
+  updated (){
+    console.log(this.$refs.image.getBoundingClientRect())
+  },
   computed: {
     ...mapGetters(['language']),
     resume () {
       const version = {
         'en': {
           'photo': resumeEn,
-          'pdf': '/static/Cynthia_resume.pdf'
+          'pdf': '/static/Cynthia_resume(en).pdf'
         },
         'zh': {
           'photo': resumeCh,
-          'pdf': '/static/Cynthia_resume2.pdf'
+          'pdf': '/static/Cynthia_resume(ch).pdf'
         }
       }
       return version[this.language]
+    },
+    iconPos () {
+      let image = this.$refs.image.getBoundingClientRect()
+      return {
+        left: `${image.right - 10}px`,
+        top: `${image.top - 10}px`,
+        position: 'absolute',
+        fontSize: '30px',
+        color: 'rgba(black, .8)',
+        zIndex: 7
+      }
     }
   }
 }
@@ -59,39 +75,67 @@ export default {
 
 <style lang="scss" scoped>
 
+h3 {
+  color: $maize-yellow;
+  font-size: 100px;
+  left: 5%;
+  letter-spacing: 3px;
+  font-weight: 600;
+  z-index: 2;
+  user-select: none;
+  cursor: default;
+  font-family: 'Roboto';
+  @media #{$break-m} {
+    font-size: 50px;
+    text-shadow: 1px 1px 10px black;
+  }
+}
+
 .flex-center {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.title {
+.resume-title {
   flex-direction: column;
-  width: 50%;
-
-  span {
-    color: $maize-yellow;
-    font-size: 100px;
-    left: 5%;
-    letter-spacing: 3px;
-    font-weight: bolder;
-    z-index: 2;
-    user-select: none;
-    cursor: default;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  a {
+    @media #{$break-m} {
+      display: none;
+    }
   }
 }
   .resume-block {
     position: relative;
     width: 100%;
+    // padding: 60px 0px;
     height: 700px;
     background-image: url('../assets/images/bg_resume.jpg');
     background-size: cover;
+    overflow: hidden;
+
+    @media #{$break-m} {
+      flex-direction: column;
+      height: auto;
+      padding: 50px 0px;
+    }
   }
   .content {
     flex-direction: column;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    width: 40%;
+    align-items: center;
+    flex: 1;
+    a {
+      margin-top: 20px;
+      display: none;
+      @media #{$break-m} {
+        display: block;
+      }
+    }
   }
   .resume {
     position: relative;
@@ -137,14 +181,6 @@ export default {
 
     img {
       height: 85%;
-    }
-    .close-btn {
-      position: absolute;
-      font-size: 30px;
-      color: rgba(black, .8);
-      z-index: 7;
-      transform: translate(1100%, -730%);
-      cursor: pointer;
     }
   }
 </style>

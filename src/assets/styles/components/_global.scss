@@ -1,5 +1,8 @@
 body { font-size: 1em; }
-p { cursor: default; }
+p {
+  cursor: default;
+  margin-bottom: 0px !important;
+}
 a { text-decoration: none; }
 button {
   user-select: none;
@@ -18,13 +21,24 @@ h2 {
 
 // for titles: about, skills, projects, resume, contact
 h3 {
-  font-size: 2em;
   font-weight: 600;
   user-select: none;
 }
-
-h4 {
+// for h4
+.project-title {
   color: $blue-grey;
-  font-weight: 300;
+  font-weight: 400;
   font-size: 14px;
 }
+
+$break-xl: "screen and (max-width : 1450px)";
+$break-lxl: "screen and (max-width : 1300px)";
+$break-l: "screen and (max-width : 1150px)";
+$break-ml: "screen and (max-width : 991px)";
+$break-m: "screen and (max-width : 767px)";
+$break-ms: "screen and (max-width : 670px)";
+$break-s: "screen and (max-width : 550px)";
+$break-sx: "screen and (max-width : 481px)";
+$break-sxs: "screen and (max-width : 400px)";
+$break-sxss: "screen and (max-width : 371px)";
+$break-xs: "screen and (max-width : 321px)";

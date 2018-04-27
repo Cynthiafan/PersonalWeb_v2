@@ -8,9 +8,10 @@ import store from './store/index.js'
 import './assets/styles/reset.css'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
+import Vuetify from 'vuetify'
 
+Vue.use(Vuetify)
 Vue.use(Vuex)
-
 Vue.use(VueScrollTo, {
      container: "body",
      duration: 500,
@@ -23,7 +24,6 @@ Vue.use(VueScrollTo, {
      x: false,
      y: true
  })
-
 Vue.use(VueI18n)
 
 const i18n = new VueI18n({

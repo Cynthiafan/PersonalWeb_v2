@@ -7,39 +7,35 @@
       <h3>{{$t("Project.title", $store.state.language)}}</h3>
     </div>
     <div class="right-block">
-      <div class="cards">
-        <div class="card">
+      <div class="project-cards">
+        <div class="project-card">
           <img src="../assets/images/project_smpa2.png" alt="">
-          <h4>{{$t("Project.smpa", $store.state.language)}}</h4>
-          <div class="card-filter">
+          <h4 class="project-title">{{$t("Project.smpa", $store.state.language)}}</h4>
+          <div class="project-card-filter">
             <div class="label">Vue</div>
             <div class="label">Vuex</div>
             <div class="label">Webpack</div>
             <div class="label">Bootstrap</div>
             <hr>
-            <div class="play-icon">
-              <img src="../assets/images/project_icon2.png" alt="">
-            </div>
+            <div class="project-info">For internal use only.</div>
           </div>
         </div>
-        <div class="card">
+        <div class="project-card">
           <img src="../assets/images/project_csd2.png" alt="">
-          <h4>{{$t("Project.csd", $store.state.language)}}</h4>
-          <div class="card-filter">
+          <h4 class="project-title">{{$t("Project.csd", $store.state.language)}}</h4>
+          <div class="project-card-filter">
             <div class="label">Vue</div>
             <div class="label">Vuex</div>
             <div class="label">Webpack</div>
             <div class="label">Bootstrap</div>
             <hr>
-            <div class="play-icon">
-              <img src="../assets/images/project_icon2.png" alt="">
-            </div>
+            <a href="https://bi.agribiz.tw/" class="project-info" target="_blank">Visit</a>
           </div>
         </div>
-        <div class="card">
+        <div class="project-card">
           <img src="../assets/images/project_pw2.png" alt="">
-          <h4>{{$t("Project.web", $store.state.language)}}</h4>
-          <div class="card-filter">
+          <h4 class="project-title">{{$t("Project.web", $store.state.language)}}</h4>
+          <div class="project-card-filter">
             <div class="label">Vue</div>
             <div class="label">Vuex</div>
             <div class="label">Webpack</div>
@@ -47,18 +43,14 @@
             <div class="label">Node</div>
             <div class="label">MongoDB</div>
             <hr>
-            <div class="play-icon">
-              <img src="../assets/images/project_icon2.png" alt="">
-            </div>
+            <div class="project-info">Here it is. B-)</div>
           </div>
         </div>
-        <div class="card">
+        <div class="project-card">
           <img class="icon" src="../assets/images/project_icon.png" alt="">
-          <div class="card-filter last-card-filter">
-            <p>Welcome to visit my</p>
-            <button class="btn-sm">
-              PLAYGROUND
-            </button>
+          <div class="project-card-filter last-project-card-filter">
+            <p>Here is my</p>
+            <a href="playground" class="my-btn-sm" target="_blank">PLAYGROUND</a>
           </div>
         </div>
       </div>
@@ -72,37 +64,50 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$card-size: 200px;
-
+$project-card-size: 200px;
+* {
+  font-family: 'Roboto';
+}
   .project-section {
     width: 100%;
-    min-height: 600px;
+    min-height: 100vh;
     background: white;
     display: flex;
+    @media #{$break-m} {
+      flex-direction: column;
+    }
   }
   .left-block {
-    width: 40%;
+    flex: 2;
     background: $dark-grey;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    @media #{$break-m} {
+      flex-direction: row;
+      padding: 10px 0px;
+    }
     img {
       width: 50%;
+      @media #{$break-m} {
+        display: none;
+      }
     }
     h3 {
       color: $maize-yellow;
       margin-top: 5px;
+      font-size: 2em;
     }
   }
   .right-block {
     display: flex;
-    width: 60%;
+    flex: 3;
     justify-content: center;
     align-items: center;
     margin: 30px 0px;
   }
-  .cards {
+  .project-cards {
     width: 450px;
     position: relative;
     margin: 0px auto;
@@ -111,10 +116,10 @@ $card-size: 200px;
     align-items: center;
     flex-wrap: wrap;
   }
-  .card {
+  .project-card {
     position: relative;
-    width: $card-size;
-    height: $card-size;
+    width: $project-card-size;
+    height: $project-card-size;
     background: #FCFCFC;
     border: 1px solid #F0F0F0;
     display: flex;
@@ -126,14 +131,14 @@ $card-size: 200px;
       width: 130px;
       height: 110px;
     }
-    h4 {
+    .project-title {
       margin-top: 12px;
     }
     .icon {
       width: 30px;
       height: 30px;
     }
-    .card-filter {
+    .project-card-filter {
       position: absolute;
       width: 100%;
       height: 100%;
@@ -151,7 +156,6 @@ $card-size: 200px;
         color: $light-grey;
         font-size: 12px;
         display: inline-block;
-        font-weight: 300;
         margin: 4px 2px;
         cursor: default;
 
@@ -160,17 +164,37 @@ $card-size: 200px;
           transition: background .2s;
         }
       }
-      .play-icon {
+      hr {
+        margin: 10px 0;
+        border: 0;
+        height: 0;
+        border-top: 1px solid rgba(0,0,0,0.1);
+        border-bottom: 1px solid rgba(255,255,255,0.3);
+      }
+      .project-info {
+        padding: 8px 10px;
+        background: $dark-grey;
+        border-radius: 5px;
+        color: $light-grey;
+        font-size: 12px;
         display: flex;
         justify-content: center;
-        margin-top: 15px;
-        img {
-          width: 20px;
-          height: 20px;
-        }
+        align-items: center;
+        margin: 0px auto;
+      }
+      .project-info[href] {
+        padding: 8px 10px;
+        background: $maize-yellow;
+        border-radius: 5px;
+        color: $dark-grey;
+        font-size: 12px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 2px 2px 5px 0px $dark-grey;
       }
     }
-    .last-card-filter {
+    .last-project-card-filter {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -178,10 +202,10 @@ $card-size: 200px;
       p {
         font-size: 15px;
         color: $light-grey;
-        margin-bottom: 5px;
+        margin-bottom: 8px;
       }
     }
-    &:hover > .card-filter {
+    &:hover > .project-card-filter {
       transition: opacity .3s ease-in-out;
       opacity: 1;
     }

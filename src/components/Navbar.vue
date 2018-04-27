@@ -1,6 +1,7 @@
 <template>
   <header>
     <nav>
+      <span>|</span>
       <a class="link" v-scroll-to="'#landing'">{{$t("Landing.home", $store.state.language)}}</a>
       <span>|</span>
       <a class="link" v-scroll-to="'#about'">{{$t("Landing.about", $store.state.language)}}</a>
@@ -14,6 +15,7 @@
       <a class="link" v-scroll-to="'#contact'">{{$t("Landing.contact", $store.state.language)}}</a>
       <span>|</span>
       <div class="link" @click="changeLanguage(setLanguage)">{{languageBtn}}</div>
+      <span>|</span>
     </nav>
   </header>
 </template>
@@ -24,6 +26,7 @@ import { mapGetters, mapMutations } from 'vuex'
 export default {
   data() {
     return {
+      drawer: true
     }
   },
   methods: {
@@ -43,7 +46,7 @@ export default {
 
 <style lang="scss" scoped>
 * {
-  font-family: "Raleway";
+  // font-family: "Raleway";
   user-select: none;
 }
 header {
@@ -56,6 +59,10 @@ header {
   padding: 0px 10px;
   background: rgba(black, .8);
   z-index: 100;
+  @media #{$break-sx} {
+    opacity: 0;
+  }
+
 }
 nav {
   width: 100%;
@@ -69,6 +76,7 @@ nav {
     margin: 0px 1%;
     letter-spacing: 2px;
     font-size: 12px;
+
 
     &:hover {
       color: $maize-yellow;

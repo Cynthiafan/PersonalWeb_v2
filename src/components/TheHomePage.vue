@@ -1,10 +1,9 @@
 <template>
   <div>
-    <navbar id="landing" ref="landing"/>
+    <navbar/>
     <landing id="landing" ref="landing"/>
     <about-me id="about" ref="about"/>
     <skill id="skill" ref="skill"/>
-    <!-- <projects id="projects" ref="projects"/> -->
     <project id="projects" ref="projects"/>
     <resume id="resume" ref="resume"/>
     <contact id="contact" ref="contact"/>
@@ -17,7 +16,6 @@ import Landing from './Landing.vue'
 import AboutMe from './AboutMe.vue'
 import Resume from './Resume.vue'
 import Contact from './Contact.vue'
-// import Projects from './Projects.vue'
 import Skill from './Skill.vue'
 import Project from './Project.vue'
 
@@ -30,13 +28,13 @@ export default {
     AboutMe,
     Resume,
     Contact,
-    // Projects,
     Skill,
     Project
   },
   data () {
     return {
-      currentPage: 0
+      currentPage: 0,
+      // checkDevice: (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
     }
   },
   methods: {

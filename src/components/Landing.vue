@@ -2,6 +2,7 @@
   <section class="landing-section">
     <div class="landing-filter">
       <div class="text">
+        <!-- Hello! I am <span>Cynthia Fan</span>,</br> a front-end developer. -->
         <p>HELLO! I AM</p>
         <p>CYNTHIA FAN</p>
         <p>= FRONT-END DEVELOPER + CREATOR + ADVENTURER</p>
@@ -47,6 +48,14 @@ p {
   }
 }
 .text {
+  // font-family: 'Raleway';
+  // font-size: 60px;
+  // color: $light-grey;
+  // font-weight: 600;
+  // span {
+  //   color: $maize-yellow;
+  // }
+
 
   p:first-child {
     letter-spacing: 1px;
@@ -67,6 +76,9 @@ p {
     color: rgba($cream-white, .7);
     border-top: 1px solid rgba($cream-white, .7);
     border-bottom: 1px solid rgba($cream-white, .7);
+
   }
 }
+
+
 </style>

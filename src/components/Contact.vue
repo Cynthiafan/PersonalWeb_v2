@@ -1,17 +1,18 @@
 <template>
   <section class="contact-block">
     <div class="content">
-      <div class="title">{{$t("Contact.title", $store.state.language)}}</div>
-      <input class="input-area" type="text" name="" value="" required :placeholder="$t('Contact.placeholder.name', $store.state.language)" v-model="name"/>
-      <input class="input-area" type="email" name="" value="" required :placeholder="$t('Contact.placeholder.email', $store.state.language)" v-model.trim="email">
-      <textarea class="input-area" name="name" rows="10" cols="80" required :placeholder="$t('Contact.placeholder.message', $store.state.language)" v-model="message"></textarea>
-      <button type="button" class="btn" @click="submit">{{$t("Contact.send", $store.state.language)}}</button>
+      <h3 class="contact-title">{{$t("Contact.title", $store.state.language)}}</h3>
+      <input class="input-area" type="text" name="name" value="" required :placeholder="$t('Contact.placeholder.name', $store.state.language)" v-model="name"/>
+      <input class="input-area" type="email" name="email" value="" required :placeholder="$t('Contact.placeholder.email', $store.state.language)" v-model.trim="email">
+      <textarea class="input-area" name="message" rows="10" cols="80" required :placeholder="$t('Contact.placeholder.message', $store.state.language)" v-model="message"></textarea>
+      <button type="submit" class="my-btn" @click="submit">{{$t("Contact.send", $store.state.language)}}</button>
     </div>
   </section>
 </template>
 
 <script>
-import Parallax from 'vue-parallaxy'
+import axios from 'axios'
+import moment from 'moment'
 
 export default {
   data() {
@@ -21,12 +22,23 @@ export default {
       message: ''
     }
   },
-  components: {
-   Parallax
-  },
   methods: {
     submit () {
-
+      if (!this.name | !this.email | !this.message) return null
+      axios.post('/api/messages', {
+        params: {
+          time: moment().format('YYYY/MM/DD HH:mm'),
+          name: this.name,
+          email: this.email,
+          message: this.message
+        }
+      })
+      .then(res => {
+        console.log(res)
+      })
+      .catch(error => {
+        console.error(error)
+      })
     },
     validEmail () {
       let email = this.email
@@ -40,13 +52,15 @@ export default {
 <style lang="scss" scoped>
 * {
   user-select: none;
+  font-family: 'Roboto';
 }
-.title {
+.contact-title {
   font-size: 56px;
   font-weight: 500;
   color: white;
   user-select: none;
   cursor: default;
+  white-space: nowrap;
 }
 .contact-block {
   width: 100%;
@@ -62,6 +76,9 @@ export default {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  @media #{$break-m} {
+    margin: 0px auto;
+  }
 
   .input-area {
     width: 350px;
@@ -69,7 +86,10 @@ export default {
     border: none;
     margin-bottom: 8px;
     resize: none;
+    background: white;
     caret-color: $maize-yellow;
+    font-size: 14px;
+
     &:valid {
       @extend .valid;
     }

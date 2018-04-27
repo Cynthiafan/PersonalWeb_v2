@@ -4,7 +4,7 @@
     <div class="content">
       <div class="main-block" data-aos="fade-up" data-aos-duration="1000">
         <div class="left">
-          <h1 class="title">{{$t("About.title", $store.state.language)}}</h1>
+          <h1 class="about-title">{{$t("About.title", $store.state.language)}}</h1>
           <div class="info">
             <div class="font-icon">
               <span><i class="fas fa-thumbs-up icon"></i></span>
@@ -16,7 +16,7 @@
             </div>
             <div class="font-icon">
               <span><i class="fas fa-envelope icon"></i></span>
-              <p>{{$t("About.email", $store.state.language)}}</p>
+              <a :href="`mailto:cynthiafan1230@gmail.com`">{{$t("About.email", $store.state.language)}}</a>
             </div>
           </div>
           <div class="description">
@@ -42,10 +42,10 @@
         </div>
       </div>
       <div class="btn-block">
-        <div class="btn" v-scroll-to="'#resume'">
+        <div class="my-btn" v-scroll-to="'#resume'">
           {{$t("About.btn.resume", $store.state.language)}}
         </div>
-        <div class="btn" v-scroll-to="'#contact'">
+        <div class="my-btn" v-scroll-to="'#contact'">
           {{$t("About.btn.contact", $store.state.language)}}
         </div>
       </div>
@@ -61,7 +61,8 @@ export default {
 <style lang="scss" scoped>
 * {
   color: $light-grey;
-  font-weight: 300;
+  font-weight: 400;
+  font-family: 'Roboto';
 }
 
 // highlight text effect
@@ -71,13 +72,17 @@ p::selection, .description::selection, h1::selection {
 }
 .about-block {
   width: 100%;
-  height: 700px;
+  min-height: 700px;
   background: $dark-grey;
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
+  @media #{$break-sx} {
+    padding: 20px 0px;
+  }
 
   .background {
     position: absolute;
@@ -95,6 +100,7 @@ p::selection, .description::selection, h1::selection {
     flex-direction: column;
     z-index: 3;
     position: relative;
+
   }
 }
 .main-block, .btn-block {
@@ -102,33 +108,44 @@ p::selection, .description::selection, h1::selection {
   padding: 5px;
   background: $dark-grey;
   box-shadow: 0 2px 10px black;
+  @media #{$break-ml} {
+    width: 80%;
+  }
 }
 .main-block {
   padding: 50px 30px;
   display: flex;
   justify-content: space-between;
+  @media #{$break-s} {
+    flex-direction: column-reverse;
+  }
 }
 .left {
-  width: 65%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: flex-start;
   flex-direction: column;
+  flex: 3;
 
-  .title {
+  .about-title {
     color: $maize-yellow;
-    font-size: 30px;
+    font-size: 26px;
     font-weight: 600;
   }
 }
 .right {
-  width: 30%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  flex: 1;
+  @media #{$break-s} {
+      padding-bottom: 5px;
+      margin-bottom: 5px;
+  }
+
   .image {
     width: 150px;
     height: 150px;
@@ -139,15 +156,21 @@ p::selection, .description::selection, h1::selection {
   .icons {
     margin-top: 15px;
     user-select: none;
+    display: flex;
+    justify-content: center;
     a, img {
       width: 30px;
       margin-right: 5px;
+
       &:last-child {
         margin-right: 0px;
       }
     }
     a:hover {
       border-bottom: 3px solid $maize-yellow;
+      @media #{$break-s} {
+          border: none;
+      }
     }
   }
 }
@@ -188,7 +211,7 @@ p::selection, .description::selection, h1::selection {
   justify-content: center;
   align-items: center;
 
-  .btn:first-child {
+  .my-btn:first-child {
     margin-right: 3%;
   }
 }

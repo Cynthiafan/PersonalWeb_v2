@@ -1,11 +1,11 @@
 {
   "Landing": {
-    "home": "HOME",
-    "about": "ABOUT",
-    "skill": "SKILL",
-    "project": "PROJECT",
-    "resume": "RESUME",
-    "contact": "CONTACT"
+    "home": "Home",
+    "about": "About",
+    "skill": "Skill",
+    "project": "Project",
+    "resume": "Resume",
+    "contact": "Contact"
   },
   "Skill": {
     "title": "SKILLS",

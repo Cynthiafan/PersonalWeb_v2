@@ -1,4 +1,4 @@
-.btn {
+.my-btn {
   text-decoration: none;
   font-family: 'Roboto';
   width: 120px;
@@ -22,7 +22,7 @@
     cursor: pointer;
   }
 }
-.btn-sm {
+.my-btn-sm {
   text-decoration: none;
   font-family: 'Roboto';
   width: 110px;
@@ -47,12 +47,12 @@
 }
 
 // for buttons group
-.btn-group {
+.my-btn-group {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.btns {
+.my-btns {
   border: 1px solid $light-grey;
   display: flex;
   justify-content: center;
@@ -61,6 +61,7 @@
   background: transparent;
   width: 90px;
   height: 26px;
+  font-size: 12px;
 
   &:first-child {
     border-radius: 3px 0px 0px 3px;
@@ -71,6 +72,6 @@
     border-left: none;
   }
 }
-.btn-selected {
+.my-btn-selected {
   color: $maize-yellow;
 }
