@@ -1,22 +1,33 @@
 <template>
-  <section class="landing-section">
+  <transition name="fade">
+  <section v-if="test" class="landing-section">
     <div class="landing-filter">
       <div class="text">
+        <img src="../assets/images/logo.svg" alt="" width="300px">
         <!-- Hello! I am <span>Cynthia Fan</span>,</br> a front-end developer. -->
-        <p>HELLO! I AM</p>
+        <!-- <p>HELLO! I AM</p>
         <p>CYNTHIA FAN</p>
-        <p>= FRONT-END DEVELOPER + CREATOR + ADVENTURER</p>
+        <p>= FRONT-END DEVELOPER + CREATOR + ADVENTURER</p> -->
       </div>
     </div>
   </section>
+</transition>
 </template>
 
 <script>
 export default {
   data () {
     return {
+      test: true,
     }
-  }
+  },
+
+  mounted () {
+    setTimeout(() => {
+      this.test = false
+    }, 5000);
+  },
+
 }
 </script>
 
@@ -33,15 +44,19 @@ p {
 }
 
 .landing-section {
+  position: fixed;
   width: 100%;
   height: 100vh;
-  background-image: url('../assets/images/bg_landing.jpg');
-  background-size: cover;
+  overflow: hidden;
+  // background-image: url('../assets/images/bg_landing.jpg');
+  // background-size: cover;
+  z-index: 100;
 
   .landing-filter {
     width: 100%;
     height: 100vh;
-    background: rgba(black, .65);
+    // background: rgba(black, .65);
+    background: rgba(black, 1);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -79,6 +94,11 @@ p {
 
   }
 }
-
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
 
 </style>

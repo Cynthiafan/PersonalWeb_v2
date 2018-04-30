@@ -4,7 +4,7 @@ import Vue from 'vue'
 Vue.use(Vuex)
 export default new Vuex.Store({
     state: {
-      language: 'en'
+      language: 'zh'
     },
     mutations: {
       changeLanguage (state, webLanguage) {

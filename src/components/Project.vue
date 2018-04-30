@@ -49,8 +49,7 @@
         <div class="project-card">
           <img class="icon" src="../assets/images/project_icon.png" alt="">
           <div class="project-card-filter last-project-card-filter">
-            <p>Here is my</p>
-            <a href="playground" class="my-btn-sm" target="_blank">PLAYGROUND</a>
+            <a class="my-btn-sm disabled-btn" target="_blank">Learn more</a>
           </div>
         </div>
       </div>
@@ -208,6 +207,29 @@ $project-card-size: 200px;
     &:hover > .project-card-filter {
       transition: opacity .3s ease-in-out;
       opacity: 1;
+    }
+    .disabled-btn {
+      position: relative;
+      &:hover:before {
+        opacity: 1;
+        transition: opacity .2s;
+      }
+      &::before {
+        content: "Under Construction";
+        padding: 8px 10px;
+        background: $dark-grey;
+        border-radius: 5px;
+        color: $light-grey;
+        font-size: 12px;
+        display: flex;
+        justify-content: center;
+        opacity: 0;
+        align-items: center;
+        position: absolute;
+        white-space: nowrap;
+        bottom: -35px;
+        z-index: 3;
+      }
     }
   }
 </style>

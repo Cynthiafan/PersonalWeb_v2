@@ -1,6 +1,6 @@
-# personal_website
+# Personal Website v2
 
-> A Vue.js project
+> Using Vue.js, Vuex, Webpack, i18n and Vuetify.
 
 ## Build Setup
 

@@ -27,7 +27,8 @@ Vue.use(VueScrollTo, {
 Vue.use(VueI18n)
 
 const i18n = new VueI18n({
-    locale: store.state.language,
+    // locale: store.state.language,
+    locale: 'zh',
     messages: {
       'en': require('./i18n/en.json'),
       'zh': require('./i18n/zh.json')

@@ -84,7 +84,7 @@ export default {
     window.addEventListener('scroll', this.handleScroll);
     const browserLanguage = navigator.language || navigator.userLanguage
     const webLanguage = browserLanguage.indexOf('zh') !== -1 ? 'zh' : 'en'
-    this.changeLanguage('en')
+    this.changeLanguage('zh')
   },
   destroyed () {
     window.removeEventListener('scroll', this.handleScroll);

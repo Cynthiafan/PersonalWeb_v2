@@ -11,16 +11,16 @@
     <div class="content">
       <div class="resume flex-center">
         <img class="resume-img" :src="resume.photo" alt="resume" ref="image">
-        <div class="filter" @click="isZoomIn = !isZoomIn"></div>
-        <img class="circle" src="../assets/images/zoom_in.png" alt="zoom-in" @click="isZoomIn = !isZoomIn">
+        <!-- <div class="filter" @click="isZoomIn = !isZoomIn"></div> -->
+        <!-- <img class="circle" src="../assets/images/zoom_in.png" alt="zoom-in" @click="isZoomIn = !isZoomIn"> -->
       </div>
       <a :href="resume.pdf" download>
         <div class="my-btn flex-center">{{$t("Resume.download", $store.state.language)}}</div>
       </a>
     </div>
-    <div v-if="isZoomIn" class="zoom-in-block flex-center" @click="zoomOut">
+    <!-- <div v-if="isZoomIn" class="zoom-in-block flex-center" @click="zoomOut">
       <img :src="resume.photo" alt="resume">
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -33,15 +33,13 @@ export default {
   data() {
     return {
       isZoomIn: false,
+      dialog: true
     }
   },
   methods: {
     zoomOut () {
       this.isZoomIn = false
     }
-  },
-  updated (){
-    console.log(this.$refs.image.getBoundingClientRect())
   },
   computed: {
     ...mapGetters(['language']),
@@ -174,9 +172,14 @@ h3 {
   }
   .zoom-in-block {
     width: 100%;
-    height: 100%;
+    // height: 100%;
+    height: 100vh;
     background: rgba(black, .7);
-    position: absolute;
+    // position: absolute;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     z-index: 5;
 
     img {

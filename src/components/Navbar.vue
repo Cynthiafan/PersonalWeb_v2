@@ -1,8 +1,8 @@
 <template>
   <header>
     <nav>
-      <span>|</span>
-      <a class="link" v-scroll-to="'#landing'">{{$t("Landing.home", $store.state.language)}}</a>
+      <!-- <span>|</span>
+      <a class="link" v-scroll-to="'#landing'">{{$t("Landing.home", $store.state.language)}}</a> -->
       <span>|</span>
       <a class="link" v-scroll-to="'#about'">{{$t("Landing.about", $store.state.language)}}</a>
       <span>|</span>
@@ -57,7 +57,8 @@ header {
   justify-content: flex-end;
   align-items: center;
   padding: 0px 10px;
-  background: rgba(black, .8);
+  // background: rgba(black, .8);
+  background: black;
   z-index: 100;
   @media #{$break-sx} {
     opacity: 0;
