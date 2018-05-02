@@ -17,7 +17,12 @@
     "title": "專案",
     "csd": "智慧農業國際商情平台",
     "web": "個人網站",
-    "smpa": "美廉社銷貨系統"
+    "smpa": "美廉社銷貨系統",
+    "smpa-info": "內部系統，無法觀看",
+    "csd-info": "前往網站",
+    "web-info": "就是這裡 B-)",
+    "playground": "更多作品",
+    "playground-state": "建置中"
   },
   "Contact": {
     "title": "與我聯絡",

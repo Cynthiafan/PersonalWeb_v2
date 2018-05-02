@@ -4,6 +4,8 @@ import TheHomePage from '@/components/TheHomePage'
 import TheErrorPage from '@/components/TheErrorPage'
 import Playground from '@/components/Playground/PlaygroundLayout'
 import TheAdmin from '@/components/TheAdmin'
+import Login from '@/components/Login'
+
 
 Vue.use(Router)
 
@@ -36,8 +38,17 @@ const router = new Router({
     {
       path: '/admin',
       name: 'admin',
-      meta: {title: 'Admin'},
-      component: TheAdmin
+      meta: {
+        title: 'Admin',
+        requiresAuth: true
+      },
+      component: TheAdmin,
+    },
+    {
+      path: '/login',
+      name: 'login',
+      meta: {title: 'Login'},
+      component: Login
     },
     {
       path: '*',
@@ -50,7 +61,18 @@ const router = new Router({
 
 
 router.beforeEach((to, from, next) => {
-  document.title = to.meta.title
-  next()
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (!localStorage.getItem('auth')) {
+      next({
+        path: '/login',
+      })
+    } else {
+      next()
+    }
+  } else {
+    document.title = to.meta.title
+    next()
+  }
+
 })
 export default router

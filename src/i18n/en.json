@@ -17,7 +17,12 @@
     "title": "PROJECTS",
     "csd": "Agri-business Platform",
     "web": "Personal Website",
-    "smpa": "Retail Sales System"
+    "smpa": "Retail Sales System",
+    "smpa-info": "For internal use only.",
+    "csd-info": "Visit the Website",
+    "web-info": "Here it is. B-)",
+    "playground": "Learn more",
+    "playground-state": "Under Construction."
   },
   "Contact": {
     "title": "CONTACT ME",

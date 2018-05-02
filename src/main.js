@@ -26,6 +26,10 @@ Vue.use(VueScrollTo, {
  })
 Vue.use(VueI18n)
 
+
+import GSignInButton from 'vue-google-signin-button'
+Vue.use(GSignInButton)
+
 const i18n = new VueI18n({
     // locale: store.state.language,
     locale: 'zh',
@@ -36,11 +40,6 @@ const i18n = new VueI18n({
 })
 
 Vue.config.productionTip = false
-
-// $(window).on('load', function () {
-//     AOS.refresh();
-// });
-
 
 new Vue({
   el: '#app',

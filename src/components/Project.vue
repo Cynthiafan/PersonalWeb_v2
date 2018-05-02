@@ -17,7 +17,7 @@
             <div class="label">Webpack</div>
             <div class="label">Bootstrap</div>
             <hr>
-            <div class="project-info">For internal use only.</div>
+            <div class="project-info">{{$t("Project.smpa-info", $store.state.language)}}</div>
           </div>
         </div>
         <div class="project-card">
@@ -29,7 +29,7 @@
             <div class="label">Webpack</div>
             <div class="label">Bootstrap</div>
             <hr>
-            <a href="https://bi.agribiz.tw/" class="project-info" target="_blank">Visit</a>
+            <a href="https://bi.agribiz.tw/" class="project-info" target="_blank">{{$t("Project.csd-info", $store.state.language)}}</a>
           </div>
         </div>
         <div class="project-card">
@@ -43,13 +43,13 @@
             <div class="label">Node</div>
             <div class="label">MongoDB</div>
             <hr>
-            <div class="project-info">Here it is. B-)</div>
+            <div class="project-info">{{$t("Project.web-info", $store.state.language)}}</div>
           </div>
         </div>
         <div class="project-card">
           <img class="icon" src="../assets/images/project_icon.png" alt="">
           <div class="project-card-filter last-project-card-filter">
-            <a class="my-btn-sm disabled-btn" target="_blank">Learn more</a>
+            <a :data-msg="playgroundState" class="my-btn-sm disabled-btn" target="_blank">{{$t("Project.playground", $store.state.language)}}</a>
           </div>
         </div>
       </div>
@@ -58,17 +58,22 @@
 </template>
 
 <script>
+// "Under Construction"
 export default {
+  computed: {
+    playgroundState () {
+      return this.$i18n.t('Project.playground-state', this.$store.state.language)
+    }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
 $project-card-size: 200px;
-* {
-  font-family: 'Roboto';
-}
+
   .project-section {
     width: 100%;
+    font-family: 'Roboto';
     min-height: 100vh;
     background: white;
     display: flex;
@@ -215,7 +220,7 @@ $project-card-size: 200px;
         transition: opacity .2s;
       }
       &::before {
-        content: "Under Construction";
+        content: attr(data-msg);
         padding: 8px 10px;
         background: $dark-grey;
         border-radius: 5px;

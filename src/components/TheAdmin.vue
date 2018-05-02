@@ -1,17 +1,18 @@
 <template>
   <div class="admin-block">
-    <v-data-table v-if="messages.length"
+    <v-btn color="pink" class="clean-btn" @click="deleteAll()">Delete All</v-btn>
+    <v-data-table
       :headers="headers"
       :items="messages"
       hide-actions
-      class="elevation-1 theme--light">
+      class="elevation-1 theme--light admin-table">
       <template slot="items" slot-scope="props">
-        <!-- <td class="text-xs-center">{{ props.item.time }}</td> -->
-        <td class="text-xs-center">{{ props.item.time }}</td>
-        <td class="text-xs-center">{{ props.item.name }}</td>
-        <td class="text-xs-center">{{ props.item.email }}</td>
+        <td class="text-xs-center">{{ props.item.num }}</td>
+        <td class="text-xs-left">{{ props.item.time }}</td>
+        <td class="text-xs-left">{{ props.item.name }}</td>
+        <td class="text-xs-left">{{ props.item.email }}</td>
         <td class="text-xs-left">{{ props.item.message }}</td>
-        <td>
+        <td class="text-xs-center">
           <v-btn icon class="mx-0" @click="mailTo(props.item.email)">
               <v-icon color="teal">mail</v-icon>
           </v-btn>
@@ -19,7 +20,6 @@
             <v-icon color="pink">delete</v-icon>
           </v-btn>
         </td>
-
         <td class="text-xs-center">
           <v-btn icon class="mx-0" @click="updateItem(props.item)">
             <v-icon color="red">
@@ -34,12 +34,13 @@
 
 <script>
 import axios from 'axios'
+import Login from './Login'
 export default {
   data () {
     return {
       messages: [],
       headers: [
-        // { text: 'Number', sortable: false, value: 'number' },
+        { text: 'Number', sortable: false, value: 'number', align: 'center' },
         { text: 'Receive Time', value: 'time', sortable: false },
         { text: 'Name', value: 'name', sortable: false },
         { text: 'Email', value: 'email', sortable: false },
@@ -49,17 +50,21 @@ export default {
       ]
     }
   },
+  components: {
+    Login
+  },
   mounted () {
     this.getItem()
-  },
-  computed: {
-
   },
   methods: {
     getItem () {
       axios.get('/api/messages')
       .then(response => {
-        this.messages = response.data
+        let result = response.data
+        for (let i in result) {
+          result[i].num = `${parseInt(i)+1}.`
+        }
+        this.messages = result
       })
       .catch(error => {
         console.error(error)
@@ -84,6 +89,15 @@ export default {
         console.error(error)
       })
     },
+    deleteAll () {
+      axios.delete('/api/messages/all')
+      .then(response => {
+        this.getItem()
+      })
+      .catch(error => {
+        console.error(error)
+      })
+    },
     mailTo (email) {
       window.location.href = `mailto:${email}`;
     }
@@ -97,12 +111,24 @@ export default {
   color: $dark-grey;
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-direction: column;
   padding: 60px 0px;
+  margin: 0px auto;
+  width: 80%;
+}
+.admin-table {
+  width: 100%;
+  // align-self: center;
 }
 td {
   vertical-align: middle !important;
   max-width: 300px;
   word-wrap: break-word;
   padding: 5px 24px !important;
+}
+.clean-btn {
+  color: white;
+  align-self: flex-end;
 }
 </style>
