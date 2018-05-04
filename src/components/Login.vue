@@ -22,17 +22,24 @@ export default {
       }
     }
   },
+  created () {
+    this.checkAuth()
+  },
   methods: {
     onSignInSuccess (googleUser) {
       const userId = googleUser.getBasicProfile().getId()
-      axios.post('/api/user', {userId})
+      axios.post('/api/users', { userId })
       .then(res => {
-        localStorage.setItem('auth', res.data);
-        res.data ? this.$router.push({path: '/admin'}) : ''
+        console.log(res);
+        localStorage.setItem('auth', res.data.token);
+        this.checkAuth()
       })
     },
     onSignInError () {
       console.log('fail')
+    },
+    checkAuth () {
+      localStorage.getItem('auth') ? this.$router.push({path: '/admin'}) : '';
     }
   }
 }

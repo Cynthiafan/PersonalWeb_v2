@@ -1,6 +1,13 @@
 <template>
   <div class="admin-block">
-    <v-btn color="pink" class="clean-btn" @click="deleteAll()">Delete All</v-btn>
+    <div class="control-btn">
+      <v-btn color="cyan darken-4" class="clean-btn" @click="deleteAll()">
+        <v-icon light>delete_forever</v-icon>
+      </v-btn>
+      <v-btn color="red darken-4" class="clean-btn" @click="logOut()">
+        <v-icon light>power_settings_new</v-icon>
+      </v-btn>
+    </div>
     <v-data-table
       :headers="headers"
       :items="messages"
@@ -38,6 +45,7 @@ import Login from './Login'
 export default {
   data () {
     return {
+      token: localStorage.getItem('auth'),
       messages: [],
       headers: [
         { text: 'Number', sortable: false, value: 'number', align: 'center' },
@@ -58,9 +66,11 @@ export default {
   },
   methods: {
     getItem () {
-      axios.get('/api/messages')
+      if (!this.token) this.$router.push({path: '/login'})
+      axios.get('/api/messages', { headers: {'x-access-token': this.token}})
       .then(response => {
         let result = response.data
+        if (!result) return
         for (let i in result) {
           result[i].num = `${parseInt(i)+1}.`
         }
@@ -72,7 +82,10 @@ export default {
     },
     deleteItem (item) {
       // let index = this.messages.findIndex(obj => obj['_id'] === item._id)
-      axios.delete('/api/messages', {params: {_id: item._id}})
+      axios.delete('/api/messages', {
+        params: {_id: item._id},
+        headers: {'x-access-token': this.token}
+      })
       .then(response => {
         this.getItem()
       })
@@ -80,8 +93,11 @@ export default {
         console.error(error)
       })
     },
-    updateItem (item) {
-      axios.put('/api/messages', item)
+    updateItem (params) {
+      axios.put('/api/messages', {
+        params,
+        headers: {'x-access-token': this.token}
+      })
       .then(response => {
         this.getItem()
       })
@@ -100,13 +116,22 @@ export default {
     },
     mailTo (email) {
       window.location.href = `mailto:${email}`;
-    }
+    },
+    logOut () {
+      localStorage.removeItem('auth');
+      this.$router.push({path: '/login'});
+    },
   }
 }
 </script>
 
 <style lang="scss" scoped>
 
+.control-btn {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+}
 .admin-block {
   color: $dark-grey;
   display: flex;
@@ -129,6 +154,5 @@ td {
 }
 .clean-btn {
   color: white;
-  align-self: flex-end;
 }
 </style>
