@@ -70,9 +70,10 @@ export default {
       axios.get('/api/messages', { headers: {'x-access-token': this.token}})
       .then(response => {
         let result = response.data
-        if (!result) return
-        for (let i in result) {
-          result[i].num = `${parseInt(i)+1}.`
+        if (result.length) {
+          for (let i in result) {
+            result[i].num = `${parseInt(i)+1}.`
+          }
         }
         this.messages = result
       })
@@ -81,7 +82,6 @@ export default {
       });
     },
     deleteItem (item) {
-      // let index = this.messages.findIndex(obj => obj['_id'] === item._id)
       axios.delete('/api/messages', {
         params: {_id: item._id},
         headers: {'x-access-token': this.token}
@@ -106,7 +106,9 @@ export default {
       })
     },
     deleteAll () {
-      axios.delete('/api/messages/all')
+      axios.delete('/api/messages/all', {
+        headers: {'x-access-token': this.token}
+      })
       .then(response => {
         this.getItem()
       })
@@ -144,7 +146,6 @@ export default {
 }
 .admin-table {
   width: 100%;
-  // align-self: center;
 }
 td {
   vertical-align: middle !important;

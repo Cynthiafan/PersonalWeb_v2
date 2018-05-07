@@ -67,6 +67,7 @@ router.beforeEach((to, from, next) => {
         path: '/login',
       })
     } else {
+      document.title = to.meta.title
       next()
     }
   } else {

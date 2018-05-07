@@ -47,7 +47,7 @@ export default {
       const version = {
         'en': {
           'photo': resumeEn,
-          'pdf': '/static/Cynthia_resume(en).pdf'
+          'pdf': '/static/Cynthia_resume(ch).pdf'
         },
         'zh': {
           'photo': resumeCh,
