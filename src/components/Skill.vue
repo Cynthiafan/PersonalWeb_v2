@@ -4,29 +4,31 @@
       <div class="content">
         <h3>{{$t("Skill.title", $store.state.language)}}</h3>
         <div class="my-btn-group">
-          <button class="my-btns"
-                  type="button"
-                  name="button"
-                  :class="[currentTab === 'f2e' ? 'my-btn-selected' : '']"
-                  @click="currentTab = 'f2e'">
-                  {{$t("Skill.front-end", $store.state.language)}}
+          <button
+            class="my-btns"
+            type="button"
+            name="button"
+            :class="[currentTab === 'f2e' ? 'my-btn-selected' : '']"
+            @click="currentTab = 'f2e',trackGA('frontend')">
+            {{$t("Skill.front-end", $store.state.language)}}
           </button>
-          <button class="my-btns"
-                  type="button"
-                  name="button"
-                  :class="[currentTab === 'b2e' ? 'my-btn-selected' : '']"
-                  @click="currentTab = 'b2e'">
-                  {{$t("Skill.back-end", $store.state.language)}}
+          <button
+            class="my-btns"
+            type="button"
+            name="button"
+            :class="[currentTab === 'b2e' ? 'my-btn-selected' : '']"
+            @click="currentTab = 'b2e', trackGA('backend')">
+            {{$t("Skill.back-end", $store.state.language)}}
           </button>
-          <button class="my-btns"
-                  type="button"
-                  name="button"
-                  :class="[currentTab === 'others' ? 'my-btn-selected' : '']"
-                  @click="currentTab = 'others'">
-                  {{$t("Skill.others", $store.state.language)}}
+          <button
+            class="my-btns"
+            type="button"
+            name="button"
+            :class="[currentTab === 'others' ? 'my-btn-selected' : '']"
+            @click="currentTab = 'others', trackGA('others')">
+            {{$t("Skill.others", $store.state.language)}}
           </button>
         </div>
-
         <!-- Front-end block -->
         <div class="skill-bar-area" v-show="currentTab === 'f2e'">
           <div class="skill-bar">
@@ -102,12 +104,8 @@
             </div>
           </div>
         </div>
-
-        <!-- <p>You can mouse over to see more.</p> -->
-
       </div>
     </div>
-
   </div>
 </template>
 
@@ -125,11 +123,13 @@ export default {
     },
     hideDetail () {
       this.currentDetail = ''
+    },
+    trackGA (label) {
+      this.$ga.event('skill', 'click', label);
     }
   },
   computed: {
     details () {
-
       const descriptions = {
         "html": {
           "text": "html.",
@@ -154,7 +154,6 @@ export default {
 * {
   font-family: 'Roboto';
 }
-
 $bar-radius: 5px;
 // bar data
 $dataNum: 11;

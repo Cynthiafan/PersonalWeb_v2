@@ -2,10 +2,10 @@
   <div class="login-page">
     <!-- <div class="login-title">Dashboard</div> -->
     <g-signin-button
-    :params="googleSignInParams"
-    @success="onSignInSuccess"
-    @error="onSignInError">
-    Sign in
+      :params="googleSignInParams"
+      @success="onSignInSuccess"
+      @error="onSignInError">
+      Sign in
     </g-signin-button>
   </div>
 

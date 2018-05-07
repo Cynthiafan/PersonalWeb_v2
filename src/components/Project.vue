@@ -29,7 +29,7 @@
             <div class="label">Webpack</div>
             <div class="label">Bootstrap</div>
             <hr>
-            <a href="https://bi.agribiz.tw/" class="project-info" target="_blank">{{$t("Project.csd-info", $store.state.language)}}</a>
+            <a href="https://bi.agribiz.tw/" class="project-info" target="_blank" @click="trackGA('csd')">{{$t("Project.csd-info", $store.state.language)}}</a>
           </div>
         </div>
         <div class="project-card">
@@ -49,7 +49,7 @@
         <div class="project-card">
           <img class="icon" src="../assets/images/project_icon.png" alt="">
           <div class="project-card-filter last-project-card-filter">
-            <a :data-msg="playgroundState" class="my-btn-sm disabled-btn" target="_blank">{{$t("Project.playground", $store.state.language)}}</a>
+            <a :data-msg="playgroundState" class="my-btn-sm disabled-btn" target="_blank" @click="trackGA('playground')">{{$t("Project.playground", $store.state.language)}}</a>
           </div>
         </div>
       </div>
@@ -63,6 +63,11 @@ export default {
   computed: {
     playgroundState () {
       return this.$i18n.t('Project.playground-state', this.$store.state.language)
+    }
+  },
+  methods: {
+    trackGA (label) {
+      this.$ga.event('project', 'link', label);
     }
   }
 }

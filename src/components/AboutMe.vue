@@ -26,26 +26,26 @@
         <div class="right">
           <div class="image"></div>
           <div class="icons">
-            <a href="https://www.facebook.com/CynthiaFan1230" target="_blank">
+            <a href="https://www.facebook.com/CynthiaFan1230" target="_blank" @click="trackGA('facebook')">
               <img src="../assets/images/icon_facebook.png" alt="facebook">
             </a>
-            <a href="https://www.instagram.com/cynthiafan1230/" target="_blank">
+            <a href="https://www.instagram.com/cynthiafan1230/" target="_blank" @click="trackGA('instagram')">
               <img src="../assets/images/icon_instagram.png" alt="instagram">
             </a>
-            <a href="https://www.linkedin.com/in/fanyatang/" target="_blank">
+            <a href="https://www.linkedin.com/in/fanyatang/" target="_blank" @click="trackGA('linkedin')">
               <img src="../assets/images/icon_linkedin.png" alt="linkedin">
             </a>
-            <a href="https://github.com/Cynthiafan" target="_blank">
+            <a href="https://github.com/Cynthiafan" target="_blank" @click="trackGA('github')">
               <img src="../assets/images/icon_github.png" alt="github">
             </a>
           </div>
         </div>
       </div>
       <div class="btn-block">
-        <div class="my-btn" v-scroll-to="'#resume'">
+        <div class="my-btn" v-scroll-to="'#resume'" @click="trackGA('resume')">
           {{$t("About.btn.resume", $store.state.language)}}
         </div>
-        <div class="my-btn" v-scroll-to="'#contact'">
+        <div class="my-btn" v-scroll-to="'#contact'" @click="trackGA('contact')">
           {{$t("About.btn.contact", $store.state.language)}}
         </div>
       </div>
@@ -55,6 +55,11 @@
 
 <script>
 export default {
+  methods: {
+    trackGA (label) {
+      this.$ga.event('about', 'click', label);
+    }
+  }
 }
 </script>
 

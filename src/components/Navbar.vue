@@ -4,17 +4,17 @@
       <!-- <span>|</span>
       <a class="link" v-scroll-to="'#landing'">{{$t("Landing.home", $store.state.language)}}</a> -->
       <span>|</span>
-      <a class="link" v-scroll-to="'#about'">{{$t("Landing.about", $store.state.language)}}</a>
+      <a class="link" v-scroll-to="'#about'" @click="trackGA('about')">{{$t("Landing.about", $store.state.language)}}</a>
       <span>|</span>
-      <a class="link" v-scroll-to="'#skill'">{{$t("Landing.skill", $store.state.language)}}</a>
+      <a class="link" v-scroll-to="'#skill'" @click="trackGA('skill')">{{$t("Landing.skill", $store.state.language)}}</a>
       <span>|</span>
-      <a class="link" v-scroll-to="'#projects'">{{$t("Landing.project", $store.state.language)}}</a>
+      <a class="link" v-scroll-to="'#projects'" @click="trackGA('project')">{{$t("Landing.project", $store.state.language)}}</a>
       <span>|</span>
-      <a class="link" v-scroll-to="'#resume'">{{$t("Landing.resume", $store.state.language)}}</a>
+      <a class="link" v-scroll-to="'#resume'" @click="trackGA('resume')">{{$t("Landing.resume", $store.state.language)}}</a>
       <span>|</span>
-      <a class="link" v-scroll-to="'#contact'">{{$t("Landing.contact", $store.state.language)}}</a>
+      <a class="link" v-scroll-to="'#contact'" @click="trackGA('contact')">{{$t("Landing.contact", $store.state.language)}}</a>
       <span>|</span>
-      <div class="link" @click="changeLanguage(setLanguage)">{{languageBtn}}</div>
+      <div class="link" @click="changeLanguage(setLanguage),trackGA('language')">{{languageBtn}}</div>
       <span>|</span>
     </nav>
   </header>
@@ -30,7 +30,10 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['changeLanguage'])
+    ...mapMutations(['changeLanguage']),
+    trackGA (label) {
+      this.$ga.event('navbar', 'click', label);
+    }
   },
   computed: {
     ...mapGetters(['language']),

@@ -2,10 +2,35 @@
   <section class="contact-block">
     <div class="content">
       <h3 class="contact-title">{{$t("Contact.title", $store.state.language)}}</h3>
-      <input class="input-area" type="text" name="name" value="" required :placeholder="$t('Contact.placeholder.name', $store.state.language)" v-model="name"/>
-      <input class="input-area" type="email" name="email" value="" required :placeholder="$t('Contact.placeholder.email', $store.state.language)" v-model.trim="email">
-      <textarea class="input-area" name="message" rows="10" cols="80" required :placeholder="$t('Contact.placeholder.message', $store.state.language)" v-model="message"></textarea>
-      <button type="submit" class="my-btn" @click="submit">{{$t("Contact.send", $store.state.language)}}</button>
+      <input
+        class="input-area"
+        type="text"
+        name="name"
+        required
+        :placeholder="$t('Contact.placeholder.name', $store.state.language)"
+        v-model="name" />
+      <input
+        class="input-area"
+        type="email"
+        name="email"
+        required
+        :placeholder="$t('Contact.placeholder.email', $store.state.language)"
+        v-model.trim="email" />
+      <textarea
+        class="input-area"
+        name="message"
+        rows="10"
+        cols="80"
+        required
+        :placeholder="$t('Contact.placeholder.message', $store.state.language)"
+        v-model="message">
+      </textarea>
+      <button
+        type="submit"
+        class="my-btn"
+        @click="submit(), trackGA()">
+        {{$t("Contact.send", $store.state.language)}}
+      </button>
       <transition name="success">
         <div class="success-alert" v-if="sendSuccess">已成功寄出，感謝您的來信！</div>
       </transition>
@@ -17,11 +42,11 @@
 </template>
 
 <script>
-import axios from 'axios'
-import moment from 'moment'
+import axios from 'axios';
+import moment from 'moment';
 
 export default {
-  data() {
+  data () {
     return {
       name: '',
       email: '',
@@ -33,7 +58,7 @@ export default {
   methods: {
     submit () {
       if (!this.name | !this.email | !this.message) {
-        this.sendFail = true
+        this.sendFail = true;
         setTimeout(() => { this.sendFail = false }, 2500);
         return null
       }
@@ -57,10 +82,9 @@ export default {
         console.error(error)
       })
     },
-    validEmail () {
-      let email = this.email
-      let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      return re.test(email);
+    trackGA () {
+      let status = !!this.name && !!this.email && !!this.message ? 'success' : 'fail';
+      this.$ga.event('contact', 'submit', status);
     }
   }
 }
@@ -97,7 +121,6 @@ export default {
   @media #{$break-m} {
     margin: 0px auto;
   }
-
   .input-area {
     width: 350px;
     padding: 8px;
@@ -107,14 +130,12 @@ export default {
     background: white;
     caret-color: $maize-yellow;
     font-size: 14px;
-
     &:valid {
       @extend .valid;
     }
     &:invalid {
       @extend .invalid;
     }
-
     &:focus {
       outline: none;
     }
@@ -136,7 +157,6 @@ export default {
   to {transform: translateY(20px); opacity: 0;}
   from {transform: translateY(0px); opacity: 1}
 }
-
 .success-alert, .fail-alert {
   color: $maize-yellow;
   position: absolute;

@@ -1,6 +1,6 @@
 <template>
   <transition name="fade">
-  <section v-if="test" class="landing-section">
+  <section v-if="isShow" class="landing-section">
     <div class="landing-filter">
       <div class="text">
         <img src="../assets/images/logo.svg" alt="" width="300px">
@@ -18,16 +18,14 @@
 export default {
   data () {
     return {
-      test: true,
+      isShow: true,
     }
   },
-
   mounted () {
     setTimeout(() => {
-      this.test = false
+      this.isShow = false
     }, 5000);
-  },
-
+  }
 }
 </script>
 
@@ -70,8 +68,6 @@ p {
   // span {
   //   color: $maize-yellow;
   // }
-
-
   p:first-child {
     letter-spacing: 1px;
     font-size: 12px;

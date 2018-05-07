@@ -2,14 +2,20 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import App from './App'
 import router from './router'
-import VueI18n from 'vue-i18n'
-import VueScrollTo from 'vue-scrollto'
 import store from './store/index.js'
 import './assets/styles/reset.css'
-import AOS from 'aos'
 import 'aos/dist/aos.css'
+import AOS from 'aos'
 import Vuetify from 'vuetify'
+import VueI18n from 'vue-i18n'
+import VueScrollTo from 'vue-scrollto'
+import VueAnalytics from 'vue-analytics'
 
+Vue.use(VueAnalytics, {
+  id: 'UA-91843640-4',
+  router,
+  ignoreRoutes: ['admin', 'login']
+})
 Vue.use(Vuetify)
 Vue.use(Vuex)
 Vue.use(VueScrollTo, {

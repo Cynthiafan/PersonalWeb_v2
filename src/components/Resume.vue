@@ -5,7 +5,7 @@
             data-aos-duration="1000"
             >RESUME</h3>
       <a :href="resume.pdf" download>
-        <div class="my-btn flex-center">{{$t("Resume.download", $store.state.language)}}</div>
+        <div class="my-btn flex-center" @click="trackGA()">{{$t("Resume.download", $store.state.language)}}</div>
       </a>
     </div>
     <div class="content">
@@ -26,8 +26,8 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import resumeEn from '../assets/images/Cynthia_resume(en).png'
-import resumeCh from '../assets/images/Cynthia_resume(ch).png'
+import resumeEn from '../assets/images/Cynthia_resume(en).png';
+import resumeCh from '../assets/images/Cynthia_resume(ch).png';
 
 export default {
   data() {
@@ -39,6 +39,9 @@ export default {
   methods: {
     zoomOut () {
       this.isZoomIn = false
+    },
+    trackGA () {
+      this.$ga.event('resume', 'download', this.language);
     }
   },
   computed: {
@@ -109,7 +112,6 @@ h3 {
   .resume-block {
     position: relative;
     width: 100%;
-    // padding: 60px 0px;
     height: 700px;
     background-image: url('../assets/images/bg_resume.jpg');
     background-size: cover;
@@ -172,10 +174,8 @@ h3 {
   }
   .zoom-in-block {
     width: 100%;
-    // height: 100%;
     height: 100vh;
     background: rgba(black, .7);
-    // position: absolute;
     position: fixed;
     display: flex;
     justify-content: center;
