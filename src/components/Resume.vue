@@ -30,7 +30,7 @@ import resumeEn from '../assets/images/Cynthia_resume(en).png';
 import resumeCh from '../assets/images/Cynthia_resume(ch).png';
 
 export default {
-  data() {
+  data () {
     return {
       isZoomIn: false,
       dialog: true

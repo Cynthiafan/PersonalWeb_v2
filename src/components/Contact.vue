@@ -35,7 +35,7 @@
         <div class="success-alert" v-if="sendSuccess">已成功寄出，感謝您的來信！</div>
       </transition>
       <transition name="fail">
-        <div class="fail-alert" v-if="sendFail">尚有欄位為空或有誤，還請再次確認！</div>
+        <div class="fail-alert" v-if="sendFail">{{errorMsg}}</div>
       </transition>
     </div>
   </section>
@@ -46,19 +46,26 @@ import axios from 'axios';
 import moment from 'moment';
 
 export default {
-  data () {
+  data() {
     return {
       name: '',
       email: '',
       message: '',
       sendSuccess: false,
-      sendFail: false
+      sendFail: false,
+      errorMsg: "",
     }
   },
   methods: {
-    submit () {
+    submit() {
       if (!this.name | !this.email | !this.message) {
         this.sendFail = true;
+        this.errorMsg = '尚有欄位為空，還請再次確認！';
+        setTimeout(() => { this.sendFail = false }, 2500);
+        return null
+      } else if (!this.validateEmail(this.email)) {
+        this.sendFail = true;
+        this.errorMsg = '信箱格式有誤，還請再次確認！'
         setTimeout(() => { this.sendFail = false }, 2500);
         return null
       }
@@ -82,9 +89,13 @@ export default {
         console.error(error)
       })
     },
-    trackGA () {
+    trackGA() {
       let status = !!this.name && !!this.email && !!this.message ? 'success' : 'fail';
       this.$ga.event('contact', 'submit', status);
+    },
+    validateEmail(email) {
+      let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(email);
     }
   }
 }
@@ -130,24 +141,11 @@ export default {
     background: white;
     caret-color: $maize-yellow;
     font-size: 14px;
-    &:valid {
-      @extend .valid;
-    }
-    &:invalid {
-      @extend .invalid;
-    }
+    border-radius: 5px;
     &:focus {
       outline: none;
     }
   }
-}
-.valid {
-  border-color: $grass-green;
-  box-shadow: inset 5px 0 0 $grass-green;
-}
-.invalid {
-  border-color: $maize-yellow;
-  box-shadow: inset 5px 0 0 $maize-yellow;
 }
 @keyframes open-alert {
   from {transform: translateY(20px); opacity: 0;}
